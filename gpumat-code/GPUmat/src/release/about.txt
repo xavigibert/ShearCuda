@@ -1,0 +1,6 @@
+GPUmat, Copyright (C) 2012  GP-you Group (http://gp-you.org)
+
+By using GPUmat, you accept all the terms and conditions
+specified in the license.txt file.
+
+Please send any suggestion or bug report to gp-you@gp-you.org.

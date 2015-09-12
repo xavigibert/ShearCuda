@@ -1,0 +1,5 @@
+test_cudaGetDeviceCount
+test_cudaGetDeviceMajorMinor
+test_cudaGetDeviceMemory
+test_cudaGetDeviceMultProcCount
+

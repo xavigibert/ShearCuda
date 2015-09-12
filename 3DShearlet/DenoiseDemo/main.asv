@@ -1,0 +1,62 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Sample routine showing the use of shearlet 3d functions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+tic;
+%matlabpool open 3 
+dataClass='single';% 'single' or 'double'
+level=2; % choose level of decomposition
+sigma=50;
+T=ones(level+1,1)*.15*sigma;
+%Load Data and introduce some noise for simulation
+addpath('CONVNFFT_Folder');
+%load tempete
+load mobile2_sequence
+
+x=double(X);
+xn = x + sigma * randn(size(x));
+fprintf('introduced  PSNR %f\n',PSNR(x,xn));
+
+%Build Windowing Filter for different Band
+F= GetMeyerBasedFilter(level,'double');
+
+%Do the Band Pass of noisy Data
+BP=DoPyrDec(x,level);
+
+%for storing partial reconstructed bandpass data
+partialBP=cell(size(BP));
+recBP=cell(size(BP));
+
+%Compute Shearlet Cofficient, Threshold and denoise.
+%If large memory is available then can collect all the
+%respective pyramidal cone data in a 1X3 cell and can do
+%further processing in a single function
+for pyrCone=1:3
+  shCoeff=ShDec(pyrCone,F,BP,dataClass);
+  %clear F{pyrCone,:}
+  shCoeff=ThresholdShCoeff(shCoeff,T);
+  partialBP{pyrCone}=ShRec(shCoeff);
+  %clear shCoeff;
+end
+clear F;
+clear shCoeff;
+%%%%Sum Up different pyramidal cone Band Pass Data%%
+level= length(BP)-1;%coarse level not touched
+for l=1:level      
+  %% Assuming different pyramidal zone have same shCoeff size at different 
+  %%level
+  recBP{l}=zeros(size(partialBP{1}{l}),dataClass);
+  for pyrCone =1:3
+   recBP{l}=recBP{l}+ partialBP{pyrCone}{l};
+  end
+end
+
+recBP{level+1}=BP{level+1};
+%%%%Reconstruct Bandpass Data
+xRec=DoPyrRec(recBP);
+fprintf('Reconstuction error after coeff suppression %e   PSNR %f\n', ... 
+  froNormMatn(x,xRec),PSNR(x,xRec));
+%matlabpool close
+toc
+
+

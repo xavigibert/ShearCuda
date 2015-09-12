@@ -1,0 +1,15 @@
+simpleCUBLAS
+test_Saxpy
+test_Sscal
+test_Cgemm
+test_Scopy
+test_cublasAlloc
+ComplexMatrixMultiplication
+test_Isamax
+test_Sdot
+test_cublasGetVector
+test_Isamin
+test_Sgemm
+test_cublasSetVector         
+test_Sasum
+test_Snrm2                   

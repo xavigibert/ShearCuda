@@ -1,0 +1,9 @@
+Double precision:
+introduced  PSNR 18.625121
+Reconstuction error after coeff suppression 1.793533e+04   PSNR 31.589649
+Elapsed time is 1019.136517 seconds.
+
+Single precision:
+introduced  PSNR 18.627287
+Reconstuction error after coeff suppression 4.555175e+04   PSNR 23.493734
+Elapsed time is 532.351713 seconds.
