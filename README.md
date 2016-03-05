@@ -40,13 +40,13 @@ Directory structure
 
 The code is organized into the following subdirectories:
 
-* gpumat-code --  Source code of the GPUmat library. After compilation, the
+* `gpumat-code` --  Source code of the GPUmat library. After compilation, the
     runtime code is copied into GPUmat.
-* shearcuda -- Code for performing the 2D Shearlet transform as well as
+* `shearcuda` -- Code for performing the 2D Shearlet transform as well as
     image separation.
-* shearcuda3d -- Code for performing the 3D Shearlet transform.
-* crack_detection -- Code to run crack detection using image separation.
-* demo_denoise -- C++ code to run image denoising.
+* `shearcuda3d` -- Code for performing the 3D Shearlet transform.
+* `crack_detection` -- Code to run crack detection using image separation.
+* `demo_denoise` -- C++ code to run image denoising.
 
 
 Compilation instructions
@@ -73,15 +73,15 @@ To verify that module works, run
     init
 
 
-Instructions to generate results from SIAM paper
+Instructions to generate results from EURASIP paper
 ------------------------------------------------
 
 The following scripts and project files reproduce the experiments reported
 in the paper:
 
-* demo_denoise/ (2D denoise demo, see section 5.1 of the paper)
-* crack_detection/testall.m (crack detection demo, see section 5.2 of the paper)
-* shearcuda3d/DenoiseDemo/main.m (3D denoise demo, see section 5.3 of the paper)
+* `demo_denoise/` (2D denoise demo, see section 5.1 of the paper)
+* `crack_detection/testall.m` (crack detection demo, see section 5.2 of the paper)
+* `shearcuda3d/DenoiseDemo/main.m` (3D denoise demo, see section 5.3 of the paper)
 
 Before running any of the MATLAB scripts it is necessary to set up the GPU
 by running
